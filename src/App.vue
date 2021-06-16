@@ -4,12 +4,12 @@
   </div>
   <div class="sidebar">
     <button @click="generate">Сгенерировать</button>
-    <ul>
+    <!-- <ul>
       <li v-for="(point, x) in points" :key="x">
         {{ point.properties.unit }}
         {{ point.geometry.coordinates }}
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
@@ -26,7 +26,7 @@ export default {
   },
   data() {
     return {
-      points: [],
+      points: []
     };
   },
   methods: {
@@ -38,21 +38,31 @@ export default {
 
 function generatePoints(n, polygon) {
   var bbox = turf.bbox(polygon);
-  var points = [];
+  var points = {
+        "ЦАО": { active: true, color: "#ffd700", features: [] },
+        "САО": { active: true, color: "#0000ff", features: [] },
+        "СВАО": { active: true, color: "#4b0082", features: [] },
+        "ВАО": { active: true, color: "#cc5500", features: [] },
+        "ЮВАО": { active: true, color: "#800080", features: [] },
+        "ЮАО": { active: true, color: "#ff0000", features: [] },
+        "ЮЗАО": { active: true, color: "#00ffff", features: [] },
+        "ЗАО": { active: true, color: "#00ff00", features: [] },
+        "СЗАО": { active: true, color: "#ffff00", features: [] },
+        "ТАО": { active: true, color: "#90ee90", features: [] },
+        "НАО": { active: true, color: "#87cefa", features: [] },
+        "ЗелАО": { active: true, color: "#87cefa", features: [] },
+      };
 
   for (let i = 0; i < n; i++) {
     var point = turf.randomPoint(1, { bbox: bbox }).features[0];
 
     if (turf.inside(point, polygon)) {
-      point.properties["show"] = true;
       for (let unit of admin_units.features) {
         if (turf.inside(point, unit)) {
-          point.properties["unit"] = unit.properties.ref;
+          points[unit.properties.ref].features.push(point);
           break;
         }
       }
-
-      points.push(point);
     } else {
       i -= 1;
     }
