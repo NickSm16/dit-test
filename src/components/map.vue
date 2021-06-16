@@ -1,35 +1,56 @@
 <template>
-  <div id="mapContainer"></div>
+  <div id="map"></div>
 </template>
 
 <script>
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import admin_units from "../../public/admin_units.json"
+
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+});
 
 export default {
   name: "Map",
+  props: ['points'],
   data() {
     return {
-      center: [55.755826, 37.6173],
+      map: null,
+      markers: null,
+      center: [55.5836, 37.3854],
     };
   },
+  watch: {
+    points: function(value) {
+      this.addPoints(value)
+    }
+  },
   methods: {
-    setupLeafletMap: function () {
-      const mapDiv = L.map("mapContainer").setView(this.center, 11);
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
-        mapDiv
-      );
+    initMap: function () {
+      this.map = L.map("map").setView(this.center, 9);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
+      L.geoJSON(admin_units, {color: '#ff0000'}).addTo(this.map);
     },
+
+    addPoints: function (points) {
+      this.markers?.clearLayers();
+      this.markers = L.geoJSON(points).addTo(this.map);
+    } 
   },
   mounted() {
-    this.setupLeafletMap();
+    this.initMap();
   },
 };
 </script>
 
 <style scoped>
-#mapContainer {
-  width: 80vw;
-  height: 90vh;
+#map {
+  width: 100%;
+  height: 100%;
 }
 </style>
