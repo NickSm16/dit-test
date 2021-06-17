@@ -1,5 +1,5 @@
 {
-  "name": "dit-test",
+  "name": "dit-test-vue2",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,20 +9,21 @@
   },
   "dependencies": {
     "@turf/turf": "^6.3.0",
-    "chart.js": "2.9.4",
+    "chart.js": "2",
     "core-js": "^3.6.5",
     "leaflet": "^1.7.1",
-    "vue": "3.1.1",
-    "vue-chartjs": "^3.5.1"
+    "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
+    "vue2-leaflet": "^2.7.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.1.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
     "root": true,
@@ -30,7 +31,7 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/vue3-essential",
+      "plugin:vue/essential",
       "eslint:recommended"
     ],
     "parserOptions": {
