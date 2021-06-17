@@ -1,4 +1,4 @@
-# dit-test-vue2
+# dit-test
 
 ## Project setup
 ```
