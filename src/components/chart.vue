@@ -6,11 +6,11 @@ export default {
   extends: Doughnut,
   props: ["points"],
   methods: {
-    clickHandler: function (event, elements) {
+    clickHandler: function (_event, elements) {
       if (elements.length) {
-        var element = elements[0];
-        var index = element._index;
-        var unit = element._chart.data.labels[index];
+        const element = elements[0];
+        const index = element._index;
+        const unit = element._chart.data.labels[index];
 
         this.$emit('toggleUnit', unit)
       }
@@ -18,9 +18,9 @@ export default {
   },
   watch: {
     points: function (value) {
-      var labels = [];
-      var colors = [];
-      var data = [];
+      let labels = [];
+      let colors = [];
+      let data = [];
 
       for (let unit in value) {
         labels.push(unit);

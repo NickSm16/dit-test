@@ -15,8 +15,8 @@
 <script>
 import * as turf from "@turf/turf";
 
-import Map from "./components/map.vue";
-import UnitChart from "./components/chart.vue";
+import Map from "./components/Map.vue";
+import UnitChart from "./components/Chart.vue";
 
 import moscow from "../public/moscow.json";
 import admin_units from "../public/admin_units.json";
@@ -53,24 +53,24 @@ export default {
 };
 
 function generatePoints(n, polygon) {
-  var bbox = turf.bbox(polygon);
-  var points = {
-    ЦАО: { active: true, color: "#ffd700", features: [] },
-    САО: { active: true, color: "#0000ff", features: [] },
-    СВАО: { active: true, color: "#4b0082", features: [] },
-    ВАО: { active: true, color: "#87cefa", features: [] },
-    ЮВАО: { active: true, color: "#800080", features: [] },
-    ЮАО: { active: true, color: "#ff0000", features: [] },
-    ЮЗАО: { active: true, color: "#00ffff", features: [] },
-    ЗАО: { active: true, color: "#00ff00", features: [] },
-    СЗАО: { active: true, color: "#cc5500", features: [] },
-    ТАО: { active: true, color: "#90ee90", features: [] },
-    НАО: { active: true, color: "#ffff00", features: [] },
-    ЗелАО: { active: true, color: "#87cefa", features: [] },
+  const bbox = turf.bbox(polygon);
+  let points = {
+    "ЦАО": { active: true, color: "#ffd700", features: [] },
+    "САО": { active: true, color: "#0000ff", features: [] },
+    "СВАО": { active: true, color: "#4b0082", features: [] },
+    "ВАО": { active: true, color: "#87cefa", features: [] },
+    "ЮВАО": { active: true, color: "#800080", features: [] },
+    "ЮАО": { active: true, color: "#ff0000", features: [] },
+    "ЮЗАО": { active: true, color: "#00ffff", features: [] },
+    "ЗАО": { active: true, color: "#00ff00", features: [] },
+    "СЗАО": { active: true, color: "#cc5500", features: [] },
+    "ТАО": { active: true, color: "#90ee90", features: [] },
+    "НАО": { active: true, color: "#ffff00", features: [] },
+    "ЗелАО": { active: true, color: "#87cefa", features: [] },
   };
 
   for (let i = 0; i < n; i++) {
-    var point = turf.randomPoint(1, { bbox: bbox }).features[0];
+    let point = turf.randomPoint(1, { bbox: bbox }).features[0];
 
     if (turf.inside(point, polygon)) {
       for (let unit of admin_units.features) {
@@ -107,7 +107,6 @@ body {
 .sidebar {
   width: 500px;
   height: 100%;
-  padding: auto;
 }
 
 .btn-container {
@@ -121,14 +120,12 @@ body {
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  border: 1px solid transparent;
+  border: 1px solid #007bff;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;
   color: #007bff;
   background-color: transparent;
-  background-image: none;
-  border-color: #007bff;
 }
 </style>

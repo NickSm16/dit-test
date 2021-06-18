@@ -7,14 +7,6 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import admin_units from "../../public/admin_units.json";
 
-var options = (color) => ({
-  radius: 5,
-  fillColor: color,
-  color: "#000",
-  weight: 1,
-  opacity: 1,
-  fillOpacity: 0.8,
-});
 export default {
   name: "Map",
   props: ["points"],
@@ -44,6 +36,14 @@ export default {
     },
 
     addPoints: function (points) {
+      let markerStyle = {
+        radius: 5,
+        color: "#000",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8,
+      }
+
       this.markers.forEach((group) => {
         group.clearLayers();
       });
@@ -52,7 +52,7 @@ export default {
         if (points[unit].active) {
           var group = L.geoJSON(points[unit].features, {
             pointToLayer: function (_feature, latlng) {
-              return L.circleMarker(latlng, options(points[unit].color));
+              return L.circleMarker(latlng, Object.assign(markerStyle, {fillColor: points[unit].color}));
             },
           }).addTo(this.map);
           this.markers.push(group);
