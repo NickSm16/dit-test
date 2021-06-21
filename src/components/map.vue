@@ -60,8 +60,8 @@ export default {
           this.markers.push(group);
         }
       }
-    },
-  },
+    }
+  }
 };
 </script>
 
