@@ -4,18 +4,7 @@ import { Doughnut } from "vue-chartjs";
 export default {
   name: "UnitChart",
   extends: Doughnut,
-  props: ["points"],
-  methods: {
-    clickHandler: function (_event, elements) {
-      if (elements.length) {
-        const element = elements[0];
-        const index = element._index;
-        const unit = element._chart.data.labels[index];
-
-        this.$emit('toggleUnit', unit)
-      }
-    },
-  },
+  props: {"points": Set},
   watch: {
     points: function (value) {
       let labels = [];
@@ -42,6 +31,17 @@ export default {
           onClick: (event, element) => this.clickHandler(event, element),
         }
       );
+    },
+  },
+  methods: {
+    clickHandler: function (_event, elements) {
+      if (elements.length) {
+        const element = elements[0];
+        const index = element._index;
+        const unit = element._chart.data.labels[index];
+
+        this.$emit('toggleUnit', unit)
+      }
     },
   },
 };

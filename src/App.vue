@@ -1,13 +1,21 @@
 <template>
   <div class="wrapper">
     <div class="mapContainer">
-      <Map v-bind:points="points" />
+      <Map :points="points" />
     </div>
     <div class="sidebar">
       <div class="btn-container">
-        <button class="btn" @click="generate">Сгенерировать</button>
+        <button
+          class="btn"
+          @click="generate"
+        >
+          Сгенерировать
+        </button>
       </div>
-      <UnitChart v-bind:points="points" @toggleUnit="toggleUnit($event)" />
+      <UnitChart
+        :points="points"
+        @toggleUnit="toggleUnit($event)"
+      />
     </div>
   </div>
 </template>

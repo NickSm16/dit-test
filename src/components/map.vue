@@ -1,5 +1,5 @@
 <template>
-  <div id="map"></div>
+  <div id="map" />
 </template>
 
 <script>
@@ -9,7 +9,7 @@ import admin_units from "../../public/admin_units.json";
 
 export default {
   name: "Map",
-  props: ["points"],
+  props: {"points": Set},
   data() {
     return {
       map: null,
@@ -21,6 +21,9 @@ export default {
     points: function (value) {
       this.addPoints(value);
     },
+  },
+  mounted() {
+    this.initMap();
   },
   methods: {
     initMap: function () {
@@ -58,9 +61,6 @@ export default {
         }
       }
     },
-  },
-  mounted() {
-    this.initMap();
   },
 };
 </script>
