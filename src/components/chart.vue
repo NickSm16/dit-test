@@ -4,7 +4,7 @@ import { Doughnut } from "vue-chartjs";
 export default {
   name: "UnitChart",
   extends: Doughnut,
-  props: {"points": Set},
+  props: {"points": Object},
   watch: {
     points: function (value) {
       let labels = [];

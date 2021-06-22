@@ -11,7 +11,7 @@ import admin_units from "../../public/admin_units.json";
 
 export default {
   name: "Map",
-  props: {"points": Set},
+  props: {"points": Object},
   data() {
     return {
       map: null,
